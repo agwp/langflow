@@ -145,7 +145,7 @@
     "@storybook/addon-docs": "^10.1.0",
     "@storybook/addon-links": "^10.1.0",
     "@storybook/react": "^10.1.0",
-    "@storybook/react-vite": "^10.1.0",
+    "@storybook/react-vite": "^10.4.6",
     "@swc/cli": "^0.5.2",
     "@swc/core": "^1.6.1",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -161,7 +161,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/sortablejs": "^1.15.8",
     "@types/uuid": "^9.0.8",
-    "@vitejs/plugin-react-swc": "^4.2.2",
+    "@vitejs/plugin-react-swc": "^4.3.1",
     "autoprefixer": "^10.4.19",
     "jest": "^30.0.3",
     "jest-environment-jsdom": "^30.0.2",
@@ -173,6 +173,6 @@
     "ts-jest": "^29.4.0",
     "typescript": "^5.4.5",
     "ua-parser-js": "^1.0.38",
-    "vite": "^7.3.1"
+    "vite": "^8.0.16"
   }
 }
