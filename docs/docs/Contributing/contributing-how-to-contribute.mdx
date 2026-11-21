@@ -185,7 +185,7 @@ If you just want to run Langflow locally without making code changes, see [Run L
 
     ```bash
     uv sync
-    uv run pre-commit install
+    uvx --with 'virtualenv>=21.14.9,<22.0.0' pre-commit install
     ```
 
 4. To test your changes before pushing commits, run `make lint`, `make format`, and `make unit_tests`.

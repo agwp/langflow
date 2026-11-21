@@ -65,7 +65,7 @@ To setup and validate the initial environment, run:
 make init
 ```
 
-This sets up the development environment by installing backend and frontend dependencies and installing pre-commit hooks. It runs `make install_backend`, `make install_frontend`, and `uvx pre-commit install`.
+This sets up the development environment by installing backend and frontend dependencies and installing pre-commit hooks in a separate tool environment.
 
 > [!TIP]
 > If you want to quickly run Langflow from source without setting up the full development environment, you can use `make run_cli` instead. This command installs dependencies, builds the frontend, and starts the application in one step.
@@ -123,7 +123,7 @@ Install pre-commit hooks by running the following commands:
 
 ```bash
 uv sync
-uv run pre-commit install
+uvx --with 'virtualenv>=21.14.9,<22.0.0' pre-commit install
 ```
 
 ## Run Langflow in Development mode

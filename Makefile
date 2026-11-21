@@ -85,7 +85,7 @@ install_backend: ## install the backend dependencies
 init: check_tools ## initialize the project
 	@make install_backend
 	@make install_frontend
-	@uvx pre-commit install
+	@uvx --with 'virtualenv>=21.14.9,<22.0.0' pre-commit install
 	@echo "$(GREEN)All requirements are installed.$(NC)"
 
 ######################
