@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import runpy
+import shlex
 import sys
 from pathlib import Path
 
@@ -291,7 +292,7 @@ def test_workspace_security_overrides_enforce_current_python_floors() -> None:
     _assert_floor(urllib3, "2.8.0")
     _assert_specifier(urllib3, "<", "3.0.0")
 
-    for name, minimum in (("authlib", "1.8.0"), ("virtualenv", "21.14.2"), ("Werkzeug", "3.1.9")):
+    for name, minimum in (("authlib", "1.8.0"), ("Werkzeug", "3.1.9")):
         _assert_floor(_requirement(overrides, name), minimum)
 
     litellm = _requirement(constraints, "litellm")
@@ -309,13 +310,29 @@ def test_workspace_security_overrides_enforce_current_python_floors() -> None:
         ("litellm", "1.103.10"),
         ("a2a-sdk", "1.2.1"),
         ("authlib", "1.8.0"),
-        ("virtualenv", "21.14.2"),
         ("werkzeug", "3.1.9"),
     ):
         matches = [package for package in packages if package["name"] == name]
         assert matches
         for package in matches:
             assert Version(package["version"]) >= Version(minimum)
+
+
+def test_precommit_installs_with_patched_virtualenv_outside_workspace() -> None:
+    makefile = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    commands = [
+        shlex.split(line.strip().removeprefix("@"))
+        for line in makefile.splitlines()
+        if line.lstrip().startswith("@uvx ") and line.rstrip().endswith("pre-commit install")
+    ]
+    assert len(commands) == 1
+    command = commands[0]
+    virtualenv = _requirement([command[command.index("--with") + 1]], "virtualenv")
+    _assert_floor(virtualenv, "21.14.9")
+
+    with (REPO_ROOT / "uv.lock").open("rb") as lock_file:
+        packages = tomllib.load(lock_file)["package"]
+    assert not {"pre-commit", "virtualenv"} & {package["name"] for package in packages}
 
 
 def test_published_packages_enforce_current_python_floors() -> None:
