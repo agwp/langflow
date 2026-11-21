@@ -80,7 +80,7 @@
     "postcss-selector-parser": "^7.1.6",
     "browserslist": "^4.28.7",
     "image-size": "^2.0.3",
-    "joi": "^17.13.7",
+    "joi": "^17.13.9",
     "baseline-browser-mapping": "^2.11.0",
     "@babel/plugin-transform-modules-systemjs": "^7.29.4",
     "express": {
@@ -94,7 +94,7 @@
     "body-parser": "^1.20.9",
     "fflate": "^0.4.9",
     "http-proxy-middleware": "^2.0.10",
-    "launch-editor": "^2.14.1",
+    "launch-editor": "^2.14.2",
     "minimatch@^8": "^11.0.8",
     "minimatch@^9": "^11.0.8",
     "qs": "^6.17.1",
@@ -118,6 +118,7 @@
     },
     "follow-redirects": "^1.16.3",
     "open@^10": "^11.0.4",
-    "glob": "^14.0.6"
+    "glob": "^14.0.6",
+    "tinypool": "2.1.2"
   }
 }
